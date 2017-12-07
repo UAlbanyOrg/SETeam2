@@ -45,13 +45,11 @@ public class ApplyJobServlet extends HttpServlet {
         String jobid=request.getParameter("jjobid");
         String jobcompany=request.getParameter("jjobcompany");
         String username=request.getParameter("jusname");
-        String firstname=request.getParameter("jfiname");
-        String lastname=request.getParameter("jlaname");
         
         boolean checkapplied = JobseekerDao.checkApplied(jobid,jobcompany,username);
         
         if(checkapplied){
-        	boolean status = JobseekerDao.applyJob(jobid,jobcompany,username,firstname,lastname);
+        	boolean status = JobseekerDao.applyJob(jobid,jobcompany,username);
             
             if(status){
                 out.println("<script type=\"text/javascript\">");

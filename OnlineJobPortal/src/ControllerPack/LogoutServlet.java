@@ -37,7 +37,7 @@ public class LogoutServlet extends HttpServlet {
 		if(session!=null){
 		session.invalidate();
 		out.println("<script type=\"text/javascript\">");
-        out.println("alert('You have loggout out successfully!')"); 
+        out.println("alert('You have logged out successfully!')"); 
         out.println("location='index.jsp';");
         out.println("</script>");
 		RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  

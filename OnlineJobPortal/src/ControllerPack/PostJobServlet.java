@@ -42,7 +42,8 @@ public class PostJobServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");  
         PrintWriter out=response.getWriter();  
-          
+         
+        String cmpuname=request.getParameter("jobcmpyuname");
         String cmpname=request.getParameter("jobcmpy");
         String contactname=request.getParameter("jobperson");
         String jobid=request.getParameter("jobid");
@@ -55,10 +56,10 @@ public class PostJobServlet extends HttpServlet {
         String city=request.getParameter("jobcity");
         String state=request.getParameter("jobstate");
         
-        boolean checkjobid = EmployerDao.checkJobId(jobid,cmpname);
+        boolean checkjobid = EmployerDao.checkJobId(jobid,cmpuname);
         
         if(checkjobid){
-        	boolean status = EmployerDao.addNewJob(jobid,cmpname,contactname,jobtitle,workexp,education,category,keyskills,jobdesp,city,state);
+        	boolean status = EmployerDao.addNewJob(jobid,cmpuname,cmpname,contactname,jobtitle,workexp,education,category,keyskills,jobdesp,city,state);
             
             if(status){
                 out.println("<script type=\"text/javascript\">");

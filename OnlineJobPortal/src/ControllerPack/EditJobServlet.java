@@ -45,6 +45,7 @@ public class EditJobServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("jid"));
         
         boolean result = false;
+        String cmpuname=request.getParameter("ejobcmpyuname");
         String cmpname=request.getParameter("ejobcmpy");
         String contactname=request.getParameter("ejobperson");
         String jobid=request.getParameter("ejobid");
@@ -56,8 +57,8 @@ public class EditJobServlet extends HttpServlet {
         String jobdesp=request.getParameter("ejobdesp");
         String city=request.getParameter("ejobcity");
         String state=request.getParameter("ejobstate");
-    	result = EmployerDao.updateJob(jobid,cmpname,contactname,jobtitle,workexp,education,category,keyskills,jobdesp,city,state,id);
-    	if(result){		
+    	result = EmployerDao.updateJob(jobid,cmpuname,cmpname,contactname,jobtitle,workexp,education,category,keyskills,jobdesp,city,state,id);
+    	if(result){
 			out.println("<script type=\"text/javascript\">");
 	        out.println("alert('Updated Successfully!')"); 
 	        out.println("location='Employer/editjobs.jsp';");
