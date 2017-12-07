@@ -177,7 +177,7 @@ public class AuthDao {
 				int j = ps.executeUpdate();
 				if(j>0) return true;
 			}
-}
+		}
 		}
 		catch(Exception e)
 		{System.out.println(e);}  
@@ -245,5 +245,67 @@ public class AuthDao {
 		catch(Exception e)
 		{System.out.println(e);}  
 		return 0;
+	}
+	
+	public static boolean checkOldPassword(String uname,String type,String oldpass){
+		try
+		{  
+		Class.forName("com.mysql.jdbc.Driver");  
+		Connection con=DriverManager.getConnection(  
+		"jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
+		      
+		PreparedStatement ps=con.prepareStatement(  
+		"select * from login where username=? and type=?");   
+		ps.setString(1,uname);
+		ps.setString(2,type);
+		ResultSet rs = ps.executeQuery();
+		      
+		if(rs.next()){
+			if(oldpass.equals(rs.getString("password"))) return true;        
+		}
+		}
+		catch(Exception e)
+		{System.out.println(e);}  
+		return false;
+	}
+	
+	public static boolean checkNewPassword(String uname,String type,String newpass){
+		try
+		{  
+		Class.forName("com.mysql.jdbc.Driver");  
+		Connection con=DriverManager.getConnection(  
+		"jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
+		      
+		PreparedStatement ps=con.prepareStatement(  
+		"select * from login where username=? and type=?");   
+		ps.setString(1,uname);
+		ps.setString(2,type);
+		ResultSet rs = ps.executeQuery();
+		      
+		if(rs.next()){
+			if(newpass.equals(rs.getString("password"))) return false;        
+		}
+		}
+		catch(Exception e)
+		{System.out.println(e);}  
+		return true;
+	}
+	
+	public static boolean changePassword(String uname, String type, String newpass){  
+		try
+        {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");
+        PreparedStatement ps= con.prepareStatement("update login set password=? where username=? and type=?");
+        ps.setString(1, newpass);
+        ps.setString(2, uname);
+        ps.setString(3, type);
+        
+        int i = ps.executeUpdate();
+        if(i>0) return true;
+        
+        }catch(Exception e)
+		{System.out.println(e);}  
+		return false;
 	}
 }
