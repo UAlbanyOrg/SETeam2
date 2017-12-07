@@ -91,7 +91,7 @@ $(function() {
                 "jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
   
                 PreparedStatement ps=con.prepareStatement(
-                "select jobs.*,appliedjobs.ajid from jobs inner join appliedjobs on jobs.jobid = appliedjobs.jobid and jobs.companyname = appliedjobs.companyname and appliedjobs.username=?");
+                "select jobs.*,appliedjobs.ajid from jobs inner join appliedjobs on jobs.jobid = appliedjobs.jobid and jobs.empusername = appliedjobs.empusername and appliedjobs.username=?");
                 
                 ps.setString(1, request.getSession().getAttribute("username").toString());
                 ResultSet rs=ps.executeQuery();
@@ -99,19 +99,19 @@ $(function() {
                 while (rs.next())
                 {
                 %>
-                <form name="form" action="../CancelApplyJobServlet?ajid=<%= rs.getInt(13) %>" method="post">
+                <form name="form" action="../CancelApplyJobServlet?ajid=<%= rs.getInt(14) %>" method="post">
 				<div class="panel panel-default">
 				<div class="panel-body">
 				<div class="col-lg-4"><p><b>Job Id:</b> <%= rs.getString(2) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(5) %> </p></div>
-				<div class="col-lg-4"><p><b>Company:</b> <%= rs.getString(3) %> </p></div>
-				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(6) %> </p></div>
-				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(7) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(8) %> </p></div>
-				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(9) %> </p></div>
-				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(11) %>, <%= rs.getString(12) %> </p></div>
-				<div class="col-lg-4"><p><b>Posted By:</b> <%= rs.getString(4) %> </p></div>
-				<div class="col-lg-12"><p><b>Job Description:</b> <%= rs.getString(10) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(6) %> </p></div>
+				<div class="col-lg-4"><p><b>Company:</b> <%= rs.getString(4) %> </p></div>
+				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(7) %> </p></div>
+				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(8) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(9) %> </p></div>
+				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(10) %> </p></div>
+				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(12) %>, <%= rs.getString(13) %> </p></div>
+				<div class="col-lg-4"><p><b>Posted By:</b> <%= rs.getString(5) %> </p></div>
+				<div class="col-lg-12"><p><b>Job Description:</b> <%= rs.getString(11) %> </p></div>
 				<input type="submit" value="Cancel Application" class="btn btn-primary btn-sm" style="margin:15px">
 				</div>
 				</div>

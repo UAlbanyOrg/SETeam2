@@ -1,3 +1,7 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,13 +71,120 @@
 </div>	
 <div class="container">
     <div class="single">  
-	   
-	   
-	   
-	   
-	   
-	   
-	   
+	   <div class="form-container">
+        <h2>Your Profile</h2>
+				<% Class.forName("com.mysql.jdbc.Driver");  
+                
+                Connection con=DriverManager.getConnection(  
+                "jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
+  
+                PreparedStatement ps=con.prepareStatement(
+                "select * from jobseeker where username=?");
+                
+                ps.setString(1, request.getSession().getAttribute("username").toString());    
+                ResultSet rs=ps.executeQuery();
+                
+                while (rs.next())
+                {
+                %>
+          <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="firstName"><b>First Name :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(3) %>
+                </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="lastName"><b>Last Name :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(4) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="contact"><b>Contact Number :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(5) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="gender"><b>Gender :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(6) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="dob"><b>Date of Birth :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(7) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="email"><b>Email :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(8) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="education"><b>Education :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(9) %>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="city"><b>City :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(10) %>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="state"><b>State :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(11) %>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="workexp"><b>Work Experience :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(12) %>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="category"><b>Category :</b></label>
+                <div class="col-md-9">
+                    <%= rs.getString(13) %>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-actions floatRight">
+                <a href="updatejskpro.jsp?jid=<%= rs.getInt(1) %>" style="text-decoration:none"><input type="button" value="Edit Profile" class="btn btn-primary btn-sm" style="margin:15px"></a>
+				<a href="changejskpass.jsp" style="text-decoration:none"><input type="button" value="Change Password" class="btn btn-primary btn-sm"></a>
+            </div>
+        </div>
+        <%
+         }
+         %>
+    </div> 
 </div>
 </div>
 <div class="footer">

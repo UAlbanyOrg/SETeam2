@@ -9,7 +9,6 @@
     try {
         if ((session.getAttribute("username")).toString() == null || (session.getAttribute("type")).toString() != "jobseeker") {
             response.sendRedirect("../login.jsp");
-            System.out.println("here");
         }
     } catch (Exception e) {
         response.sendRedirect("../login.jsp");

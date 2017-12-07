@@ -1,7 +1,3 @@
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,7 +16,7 @@
 %>
 <html>
 <head>
-<title>Notifications</title>
+<title>Change Password</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -29,18 +25,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <link href="../css/style.css" rel='stylesheet' type='text/css' />
 <link href='//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<link href="../css/font-awesome.css" rel="stylesheet">
-<script>
-$(function() {
-	$("#searchjnotify").on("keyup", function() {
-	    var g = $(this).val().toLowerCase();
-	    $(".panel .panel-body").each(function() {
-	        var s = $(this).text().toLowerCase();
-	        $(this).closest('.panel')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
-	    });
-	});
-});
-</script> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -75,44 +60,47 @@ $(function() {
 		<div id="search_wrapper1">
 		   <div id="search_form" class="clearfix">
 		   <h4>Welcome <%=request.getSession().getAttribute("firstname") %> <%=request.getSession().getAttribute("lastname") %></h4>
-		    <h1>Notifications</h1>
+		    <h1>Change Password</h1>
 			</div>
 		</div>
    </div> 
 </div>	
 <div class="container">
-    <div class="single">  
-	   <div class="form-container">
-    <input type="text" id="searchjnotify" placeholder="Search Here"/>
-    		<h2>Notifications</h2>  
-                <% Class.forName("com.mysql.jdbc.Driver");  
-                
-                Connection con=DriverManager.getConnection(  
-                "jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
-  
-                PreparedStatement ps=con.prepareStatement(
-                "select jobs.jobid,jobs.jobtitle,jobs.companyname,appliedjobs.status,appliedjobs.ajid from jobs inner join appliedjobs on jobs.jobid = appliedjobs.jobid and jobs.empusername = appliedjobs.empusername and appliedjobs.username=? and appliedjobs.status<>?");
-                
-                ps.setString(1, request.getSession().getAttribute("username").toString());
-                ps.setString(2, "Deleted");
-                ResultSet rs=ps.executeQuery();
-                
-                while (rs.next())
-                {
-                %>
-                <div class="panel panel-default">
-				<div class="panel-body">
-				<div class="col-lg-12"><p><b>Status:</b> Your Application is <%= rs.getString(4) %> </p></div>
-				<div class="col-lg-4"><p><b>Applied for Job Id:</b> <%= rs.getString(1) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(2) %> </p></div>
-				<div class="col-lg-4"><p><b>Company:</b> <%= rs.getString(3) %> </p></div>
-				<a href="../UpdNotiServlet?ajid=<%= rs.getInt(5) %>" style="text-decoration:none"><input type="button" value="Remove Notification" class="btn btn-primary btn-sm" style="margin:15px"></a>
-				</div>
-				</div>
-                <%
-                }
-                %>
-</div>  
+    <div class="single"> 
+	   <form name="form" action="../ChangePasswordServlet" method="post">
+        <input type="hidden" name="username" id="username" value="<%=request.getSession().getAttribute("username") %>"/>
+        <input type="hidden" name="type" id="type" value="Jobseeker"/>
+          <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="jskOldPass"><b>Current Password :</b></label>
+                <div class="col-md-9">
+                    <input type="password" name="jskOldPass" id="jskOldPass" class="form-control input-sm" required/>
+                </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="jskNewPass"><b>New Password :</b></label>
+                <div class="col-md-9">
+                    <input type="password" name="jskNewPass" id="jskNewPass" class="form-control input-sm" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="jskConPass"><b>Confirm New Password :</b></label>
+                <div class="col-md-9">
+                    <input type="password" name="jskConPass" id="jskConPass" class="form-control input-sm" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-actions floatRight">
+                <input type="submit" value="Change Password" class="btn btn-primary btn-sm">
+                <input type="button" value="Cancel" class="btn btn-primary btn-sm" onclick="window.location.href='editjskprofile.jsp';">
+            </div>
+        </div>
+        </form>   
 </div>
 </div>
 <div class="footer">
@@ -122,5 +110,20 @@ $(function() {
 	</div>
 	</div>
 </div>
+<script>
+var password = document.getElementById("jskNewPass");
+var confirm_password = document.getElementById("jskConPass");
+
+function validatePassword(){
+if(password.value != confirm_password.value) {
+  confirm_password.setCustomValidity("Passwords Don't Match");
+} else {
+  confirm_password.setCustomValidity('');
+}
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script> 
 </body>
 </html>	

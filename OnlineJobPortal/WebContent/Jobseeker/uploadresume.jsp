@@ -69,10 +69,11 @@
     <div class="single">  
 	   <div class="form-container">
         <h2>Upload Resume</h2>
-        <form name="form" action="../UploadResumeServlet" method="post">
+        <form name="form" action="../UploadResumeServlet" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="username" id="username" value="<%=request.getSession().getAttribute("username") %>"/>
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="jobid">Upload Resume</label>
+                <label class="col-md-3 control-lable" for="updresume"><b>Upload Resume :</b></label>
                 <div class="col-md-9">
                     <input type="file" name="updresume" id="updresume" required/>
                 </div>

@@ -91,7 +91,7 @@ $(function() {
                 "jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
   
                 PreparedStatement ps=con.prepareStatement(
-                "select * from jobs where not exists (select * from appliedjobs where appliedjobs.jobid = jobs.jobid and appliedjobs.companyname = jobs.companyname and username=?)");
+                "select * from jobs where not exists (select * from appliedjobs where appliedjobs.jobid = jobs.jobid and appliedjobs.empusername = jobs.empusername and username=?)");
                 
                 ps.setString(1, request.getSession().getAttribute("username").toString());
                 ResultSet rs=ps.executeQuery();
@@ -103,20 +103,18 @@ $(function() {
                 <input type="hidden" name="jjobid" id="jjobid" value="<%= rs.getString(2) %>"/>
                 <input type="hidden" name="jjobcompany" id="jjobcompany" value="<%= rs.getString(3) %>"/>
                 <input type="hidden" name="jusname" id="jusname" value="<%=request.getSession().getAttribute("username") %>"/>
-                <input type="hidden" name="jfiname" id="jfiname" value="<%=request.getSession().getAttribute("firstname") %>"/>
-                <input type="hidden" name="jlaname" id="jlaname" value="<%=request.getSession().getAttribute("lastname") %>"/>
 				<div class="panel panel-default">
 				<div class="panel-body">
 				<div class="col-lg-4"><p><b>Job Id:</b> <%= rs.getString(2) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(5) %> </p></div>
-				<div class="col-lg-4"><p><b>Company:</b> <%= rs.getString(3) %> </p></div>
-				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(6) %> </p></div>
-				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(7) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(8) %> </p></div>
-				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(9) %> </p></div>
-				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(11) %>, <%= rs.getString(12) %> </p></div>
-				<div class="col-lg-4"><p><b>Posted By:</b> <%= rs.getString(4) %> </p></div>
-				<div class="col-lg-12"><p><b>Job Description:</b> <%= rs.getString(10) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(6) %> </p></div>
+				<div class="col-lg-4"><p><b>Company:</b> <%= rs.getString(4) %> </p></div>
+				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(7) %> </p></div>
+				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(8) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(9) %> </p></div>
+				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(10) %> </p></div>
+				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(12) %>, <%= rs.getString(13) %> </p></div>
+				<div class="col-lg-4"><p><b>Posted By:</b> <%= rs.getString(5) %> </p></div>
+				<div class="col-lg-12"><p><b>Job Description:</b> <%= rs.getString(11) %> </p></div>
 				<input type="submit" value="Apply" class="btn btn-primary btn-sm" style="margin:15px">
 				</div>
 				</div>
