@@ -18,10 +18,9 @@ DROP TABLE IF EXISTS `appliedjobs`;
 CREATE TABLE `appliedjobs` (
   `ajid` int(11) NOT NULL AUTO_INCREMENT,
   `jobid` varchar(45) NOT NULL,
-  `companyname` varchar(45) NOT NULL,
+  `empusername` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `firstname` varchar(45) NOT NULL,
-  `lastname` varchar(45) NOT NULL,
+  `status` varchar(45) NOT NULL,
   PRIMARY KEY (`ajid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -54,6 +53,7 @@ DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
   `jid` int(11) NOT NULL AUTO_INCREMENT,
   `jobid` varchar(45) NOT NULL,
+  `empusername` varchar(45) NOT NULL,
   `companyname` varchar(45) NOT NULL,
   `contactname` varchar(45) NOT NULL,
   `jobtitle` varchar(45) NOT NULL,
