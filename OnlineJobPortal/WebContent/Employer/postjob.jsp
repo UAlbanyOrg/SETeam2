@@ -70,6 +70,7 @@
 	   <div class="form-container">
         <h2>Post Job Opening</h2>
         <form name="form" action="../PostJobServlet" method="post">
+        <input type="hidden" name="jobcmpyuname" id="jobcmpyuname" value="<%=request.getSession().getAttribute("username") %>"/>
         <input type="hidden" name="jobcmpy" id="jobcmpy" value="<%=request.getSession().getAttribute("cmpname") %>"/>
         <input type="hidden" name="jobperson" id="jobperson" value="<%=request.getSession().getAttribute("contactname") %>"/>
         <div class="row">

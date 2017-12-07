@@ -91,9 +91,9 @@ $(function() {
                 "jdbc:mysql://localhost:3306/jobportal?zeroDateTimeBehavior=convertToNull","root","root");  
   
                 PreparedStatement ps=con.prepareStatement(
-                "select * from jobs where companyname=?");
+                "select * from jobs where empusername=?");
                 
-                ps.setString(1, request.getSession().getAttribute("cmpname").toString());    
+                ps.setString(1, request.getSession().getAttribute("username").toString());    
                 ResultSet rs=ps.executeQuery();
                 
                 while (rs.next())
@@ -102,13 +102,13 @@ $(function() {
 				<div class="panel panel-default">
 				<div class="panel-body">
 				<div class="col-lg-4"><p><b>Job Id:</b> <%= rs.getString(2) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(5) %> </p></div>
-				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(6) %> </p></div>
-				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(7) %> </p></div>
-				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(8) %> </p></div>
-				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(11) %>, <%= rs.getString(12) %> </p></div>
-				<div class="col-lg-8"><p><b>Job Description:</b> <%= rs.getString(10) %> </p></div>
-				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(9) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Title:</b> <%= rs.getString(6) %> </p></div>
+				<div class="col-lg-4"><p><b>Work Experience:</b> <%= rs.getString(7) %> </p></div>
+				<div class="col-lg-4"><p><b>Education:</b> <%= rs.getString(8) %> </p></div>
+				<div class="col-lg-4"><p><b>Job Category:</b> <%= rs.getString(9) %> </p></div>
+				<div class="col-lg-4"><p><b>Location:</b> <%= rs.getString(12) %>, <%= rs.getString(13) %> </p></div>
+				<div class="col-lg-8"><p><b>Job Description:</b> <%= rs.getString(11) %> </p></div>
+				<div class="col-lg-4"><p><b>Key Skills:</b> <%= rs.getString(10) %> </p></div>
 				<a href="updatejob.jsp?jid=<%= rs.getInt(1) %>" style="text-decoration:none"><input type="button" value="Edit Job" class="btn btn-primary btn-sm" style="margin:15px"></a>
 				<a href="../DeleteJobServlet?jid=<%= rs.getInt(1) %>" style="text-decoration:none"><input type="button" value="Delete Job" class="btn btn-primary btn-sm"></a>
 				</div>

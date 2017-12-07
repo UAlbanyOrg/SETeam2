@@ -90,17 +90,19 @@
                 {
          %>
         <form name="form" action="../EditJobServlet?jid=<%= rs.getInt(1) %>" method="post">
-        <input type="hidden" name="ejobcmpy" id="ejobcmpy" value="<%= rs.getString(3) %>"/>
-        <input type="hidden" name="ejobperson" id="ejobperson" value="<%= rs.getString(4) %>"/>
-        <input type="hidden" name="selexp" id="selexp" value="<%= rs.getString(6) %>"/>
-        <input type="hidden" name="seledu" id="seledu" value="<%= rs.getString(7) %>"/>
-        <input type="hidden" name="seljob" id="seljob" value="<%= rs.getString(8) %>"/>
-        <input type="hidden" name="selstate" id="selstate" value="<%= rs.getString(12) %>"/>
+        <input type="hidden" name="ejobcmpyuname" id="ejobcmpyuname" value="<%= rs.getString(3) %>"/>
+        <input type="hidden" name="ejobcmpy" id="ejobcmpy" value="<%= rs.getString(4) %>"/>
+        <input type="hidden" name="ejobperson" id="ejobperson" value="<%= rs.getString(5) %>"/>
+        <input type="hidden" name="ejobid" id="ejobid" value="<%= rs.getString(2) %>"/>
+        <input type="hidden" name="selexp" id="selexp" value="<%= rs.getString(7) %>"/>
+        <input type="hidden" name="seledu" id="seledu" value="<%= rs.getString(8) %>"/>
+        <input type="hidden" name="seljob" id="seljob" value="<%= rs.getString(9) %>"/>
+        <input type="hidden" name="selstate" id="selstate" value="<%= rs.getString(13) %>"/>
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="ejobid">Job Id</label>
                 <div class="col-md-9">
-                    <input type="text" name="ejobid" id="ejobid" value="<%= rs.getString(2) %>" class="form-control input-sm" required/>
+                    <b><%= rs.getString(2) %></b>
                 </div>
             </div>
          </div>
@@ -108,7 +110,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="ejobtitle">Job Title</label>
                 <div class="col-md-9">
-                    <input type="text" name="ejobtitle" id="ejobtitle" value="<%= rs.getString(5) %>" class="form-control input-sm" required/>
+                    <input type="text" name="ejobtitle" id="ejobtitle" value="<%= rs.getString(6) %>" class="form-control input-sm" required/>
                 </div>
             </div>
          </div>
@@ -202,7 +204,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="ejobskills">Key Skills</label>
                 <div class="col-md-9">
-                    <input type="text" name="ejobskills" id="ejobskills" value="<%= rs.getString(9) %>" class="form-control input-sm" required/>
+                    <input type="text" name="ejobskills" id="ejobskills" value="<%= rs.getString(10) %>" class="form-control input-sm" required/>
                 </div>
             </div>
         </div>
@@ -210,7 +212,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="ejobdesp">Job Description</label>
                 <div class="col-md-9">
-                    <textarea name="ejobdesp" id="ejobdesp" class="form-control input-sm" required><%= rs.getString(10) %></textarea>
+                    <textarea name="ejobdesp" id="ejobdesp" class="form-control input-sm" required><%= rs.getString(11) %></textarea>
                 </div>
             </div>
         </div>
@@ -218,7 +220,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="ejobcity">City</label>
                 <div class="col-md-9">
-                    <input type="text" name="ejobcity" id="ejobcity" value="<%= rs.getString(11) %>" class="form-control input-sm" required/>
+                    <input type="text" name="ejobcity" id="ejobcity" value="<%= rs.getString(12) %>" class="form-control input-sm" required/>
                 </div>
             </div>
         </div>
