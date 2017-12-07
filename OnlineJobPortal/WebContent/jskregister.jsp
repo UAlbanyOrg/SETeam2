@@ -130,7 +130,7 @@
                 <label class="col-md-3 control-lable" for="dob">Date of Birth</label>
                 <div class="col-md-9">
                     <div class="input-group input-append date" id="datePicker">
-                		<input type="text" class="form-control" name="dob" id="dob" />
+                		<input type="text" class="form-control" name="dob" id="dob" required/>
                 		<span class="input-group-addon add-on"><span class="fa fa-calendar"></span></span>
             		</div>
                 </div>

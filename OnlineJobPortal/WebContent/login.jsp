@@ -95,7 +95,7 @@
                                 </select>
                             </div>
                         </div>
-                     <div class="forgot">
+                     <!-- <div class="forgot">
 						 <div class="login-check">
 				 			<label class="checkbox1"><input type="checkbox" name="checkbox"><i> </i>Remember Me</label>
 				         </div>
@@ -103,7 +103,7 @@
 				 			<p><a href="#"> Forgot Password? </a></p>
 				 		 </div>
 					     <div class="clearfix"> </div>
-			        </div>
+			        </div> -->
 					<div class="login-btn">
 					   <input type="submit" value="Login">
 					</div>
